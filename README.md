@@ -2,9 +2,23 @@
 
 ## Hackathon Category: Best in Automation, Best in AI, Best in Applications, Best in Power
 
+<div>
+    <a href="https://www.loom.com/share/bea858f72cc8442d906e5f1fe6cad9b6">
+      <p>The Efficient Santa Clause | MS PowerDevs Hackathon - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/bea858f72cc8442d906e5f1fe6cad9b6">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/bea858f72cc8442d906e5f1fe6cad9b6-8843f5152316e9be-full-play.gif">
+    </a>
+  </div>
+
 ## Project Description:
 
 The AI-Powered Meeting Minutes & Gift Generator is a Power Platform solution designed to revolutionize meeting follow-up and foster a more human-centered workplace. It leverages AI to analyze meeting transcripts, automatically generate structured meeting minutes in HTML format, and uniquely, suggest thoughtful and personalized gift ideas for action item owners.  By subtly incorporating elements of employee recognition inspired by watercooler conversations, this solution aims to improve employee retention and satisfaction through seamless, AI-driven empathy at scale. The system operates as a fully automated email flow, requiring no additional user interface for PMs or HR.
+
+<img width="629" alt="image" src="https://github.com/user-attachments/assets/d9e54c0a-d371-4247-a6f3-979803f6d0fb" />
+<img width="436" alt="image" src="https://github.com/user-attachments/assets/f97503be-0111-495d-aaa8-422fc7f38eff" />
+<img width="574" alt="image" src="https://github.com/user-attachments/assets/19378639-0b85-48ac-8361-f8ade35355a6" />
+
 
 ## Setup and Testing Instructions:
 

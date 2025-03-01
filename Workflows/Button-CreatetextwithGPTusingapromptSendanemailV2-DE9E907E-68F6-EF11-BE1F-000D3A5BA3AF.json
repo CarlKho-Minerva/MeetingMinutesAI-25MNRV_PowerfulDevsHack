@@ -1,0 +1,254 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr97b_sharedcommondataserviceforapps_5766f"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "cr97b_sharedoffice365_9ed09"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_approvals": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "cr97b_sharedapprovals_ea98c"
+        },
+        "api": {
+          "name": "shared_approvals"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "37175637-8099-4cb6-96ab-7123939fe897"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Meeting Transcript",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "key-button-date": {
+                  "title": "Date",
+                  "type": "string",
+                  "x-ms-dynamically-added": false
+                },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "fullAddress": {
+                      "title": "Full address",
+                      "type": "string",
+                      "x-ms-dynamically-added": false
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "countryOrRegion": {
+                          "title": "Country/Region",
+                          "type": "string",
+                          "x-ms-dynamically-added": false
+                        },
+                        "city": {
+                          "title": "City",
+                          "type": "string",
+                          "x-ms-dynamically-added": false
+                        },
+                        "state": {
+                          "title": "State",
+                          "type": "string",
+                          "x-ms-dynamically-added": false
+                        },
+                        "street": {
+                          "title": "Street",
+                          "type": "string",
+                          "x-ms-dynamically-added": false
+                        },
+                        "postalCode": {
+                          "title": "Postal code",
+                          "type": "string",
+                          "x-ms-dynamically-added": false
+                        }
+                      },
+                      "required": [
+                        "countryOrRegion",
+                        "city",
+                        "state",
+                        "street",
+                        "postalCode"
+                      ]
+                    },
+                    "coordinates": {
+                      "type": "object",
+                      "properties": {
+                        "latitude": {
+                          "title": "Latitude",
+                          "type": "number",
+                          "x-ms-dynamically-added": false
+                        },
+                        "longitude": {
+                          "title": "Longitude",
+                          "type": "number",
+                          "x-ms-dynamically-added": false
+                        }
+                      },
+                      "required": [
+                        "latitude",
+                        "longitude"
+                      ]
+                    }
+                  }
+                }
+              },
+              "required": [
+                "text",
+                "key-button-date",
+                "location"
+              ]
+            },
+            "headersSchema": {
+              "x-ms-user-name-encoded": {
+                "title": "User name",
+                "type": "string",
+                "format": "byte",
+                "x-ms-dynamically-added": false
+              },
+              "x-ms-user-email-encoded": {
+                "title": "User email",
+                "type": "string",
+                "format": "byte",
+                "x-ms-dynamically-added": false
+              },
+              "x-ms-user-timestamp": {
+                "title": "Timestamp",
+                "type": "string",
+                "x-ms-dynamically-added": false
+              }
+            }
+          }
+        }
+      },
+      "actions": {
+        "Create_text_with_GPT_using_a_prompt": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "a16f7416-7039-40cb-ab3e-71284501443b",
+            "flowSystemMetadata": {
+              "portalOperationId": "aibuilderpredict_customprompt",
+              "portalOperationGroup": "aibuilder",
+              "portalOperationApiDisplayNameOverride": "AI Builder",
+              "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+              "portalOperationBrandColorOverride": "#0A76C4",
+              "portalOperationApiTierOverride": "Standard"
+            }
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "aibuilderpredict_customprompt"
+            },
+            "parameters": {
+              "recordId": "28b9cd69-c761-4e88-a744-9a2830ba0e22",
+              "item/requestv2/Meeting_20Transcript": "@triggerBody()['text']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Start_and_wait_for_an_approval_of_text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "06969a96-9e42-49f0-8822-cc714075b360"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "connectionName": "shared_office365",
+              "operationId": "SendEmailV2"
+            },
+            "parameters": {
+              "emailMessage/To": "kho@uni.minerva.edu;carlkho.cvk@gmail.com",
+              "emailMessage/Subject": "Meeting Minutes and Gift Draft",
+              "emailMessage/Body": "<p>@{outputs('Start_and_wait_for_an_approval_of_text')?['body/acceptedText']}</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": {
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+              "type": "Raw"
+            }
+          }
+        },
+        "Start_and_wait_for_an_approval_of_text": {
+          "runAfter": {
+            "Create_text_with_GPT_using_a_prompt": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "13cfc727-8b12-43ce-97db-50381b38e6ab"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_approvals",
+              "connectionName": "shared_approvals",
+              "operationId": "StartAndWaitForATextSuggestionApproval"
+            },
+            "parameters": {
+              "WebhookTextSuggestionApprovalCreationInput/title": "Approve Gift?",
+              "WebhookTextSuggestionApprovalCreationInput/suggestedText": "@outputs('Create_text_with_GPT_using_a_prompt')?['body/responsev2/predictionOutput/text']",
+              "WebhookTextSuggestionApprovalCreationInput/assignedTo": "kho@uni.minerva.edu",
+              "WebhookTextSuggestionApprovalCreationInput/enableNotifications": true,
+              "WebhookTextSuggestionApprovalCreationInput/enableReassignment": true
+            },
+            "authentication": {
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+              "type": "Raw"
+            }
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,117 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25014.218" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25014.00218">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{de9e907e-68f6-ef11-be1f-000d3a5ba3af}" Name="Button -&gt; Create text with GPT using a prompt,Send an email (V2)">
+      <JsonFileName>/Workflows/Button-CreatetextwithGPTusingapromptSendanemailV2-DE9E907E-68F6-EF11-BE1F-000D3A5BA3AF.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Button -&gt; Create text with GPT using a prompt,Send an email (V2)" />
+      </LocalizedNames>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <AIModels>
+    <AIModel>
+      <msdyn_aimodelid>{28b9cd69-c761-4e88-a744-9a2830ba0e22}</msdyn_aimodelid>
+      <msdyn_name>MeetingMinutesAndGiftGenerator</msdyn_name>
+      <msdyn_templateid>{edfdb190-3791-45d8-9a6c-8f90a37c278a}</msdyn_templateid>
+      <statecode>1</statecode>
+      <statuscode>1</statuscode>
+      <IsCustomizable>1</IsCustomizable>
+      <msdyn_activerunconfigurationid>{ec7c6385-67f6-ef11-be1f-000d3a5ba3af}</msdyn_activerunconfigurationid>
+      <AIConfigurations>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{ec7c6385-67f6-ef11-be1f-000d3a5ba3af}</msdyn_aiconfigurationid>
+          <msdyn_customconfiguration>{"version":"GptDynamicPrompt-2","prompt":[{"type":"literal","text":"You are an expert AI assistant that generates detailed draft meeting minutes AND creative, thoughtful, and inexpensive gift suggestions for each action item.  Do not add any extra text after the minutes and gift suggestions.\n\nYour ABSOLUTE PRIMARY GOAL is to create WELL-FORMATTED MEETING MINUTES **COMPLETELY IN VALID HTML CODE**, optimized for display in email clients. We need to see clear visual structure using HTML.\n\n**EVERYTHING you output MUST BE HTML CODE.** Use HTML tags for *all* formatting.\n\nSpecifically, use these HTML tags:\n\n*   Paragraphs:  `&lt;p&gt;` tags\n*   Headings:  `&lt;h2&gt;` for main headings, `&lt;h3&gt;` for sub-headings\n*   Lists (for Discussion Points &amp; Decisions):  `&lt;ul&gt;` (unordered list) and `&lt;li&gt;` (list items)\n*   Line breaks: `&lt;br /&gt;` (use for separating action items)\n*   Bold text: `&lt;b&gt;` or `&lt;strong&gt;` tags\n*   Italics: `&lt;i&gt;` or `&lt;em&gt;` tags\n\nFollow these specific goals and output format using ONLY HTML tags as described above:\n\n1.  Identify and summarize key discussion points. Output under `&lt;h2&gt;Key Discussion Points&lt;/h2&gt;` using `&lt;ul&gt;` and `&lt;li&gt;`.\n2.  List decisions made. Output under `&lt;h2&gt;Decisions Made&lt;/h2&gt;` using `&lt;ul&gt;` and `&lt;li&gt;`.\n3.  Create a section for \"Action Items\" under `&lt;h2&gt;Action Items&lt;/h2&gt;`.  **For each action item, output it as a separate paragraph `&lt;p&gt;`, and use `&lt;br /&gt;` tags to create line breaks within the \"Action Items\" section to separate each action item block.** Format each action item paragraph with inline CSS styles for emphasis:\n    *   `&lt;p&gt;&lt;b&gt;Action Item:&lt;/b&gt; [Description]&lt;br /&gt;&lt;b&gt;Assigned Owner:&lt;/b&gt; [Owner Name]&lt;br /&gt;&lt;b&gt;Gift Suggestion:&lt;/b&gt; [Gift Idea]&lt;br /&gt;&lt;i style=\"font-style: italic;\"&gt;\"[Direct quote]\"&lt;/i&gt;&lt;/p&gt;`\n        **(Use `&lt;p&gt;` to wrap each action item block, and `&lt;br /&gt;` for line breaks *within* each action item block to separate description, owner, gift, and quote. Use `&lt;b&gt;` for bold labels, and inline style and `&lt;i&gt;` for italic quote).**\n\n4.  For Attendees (if mentioned), output under `&lt;h2&gt;Attendees&lt;/h2&gt;` heading, using `&lt;p&gt;` tags to list attendees.\n\nStart the entire output with `&lt;p&gt;&lt;h2&gt;Meeting Minutes&lt;/h2&gt;&lt;/p&gt;` to create a main heading for the minutes.\n\nExample Output Format (Illustrative HTML Code - AI should generate similar - **Note: Action Items are now paragraphs, not `&lt;ol&gt;` list**):\n\n&lt;p&gt;&lt;h2&gt;Meeting Minutes&lt;/h2&gt;&lt;/p&gt;\n\n&lt;p&gt;&lt;h2&gt;Attendees&lt;/h2&gt;&lt;/p&gt;\n&lt;p&gt;Maria (Project Manager), David (Lead Developer), Sophia (UX Designer), Ethan (QA Tester)&lt;/p&gt;\n\n&lt;p&gt;&lt;h2&gt;Key Discussion Points&lt;/h2&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;li&gt;Sprint goal: user authentication and profile module.&lt;/li&gt;\n&lt;li&gt;&lt;li&gt;David's update on authentication module development.&lt;/li&gt;\n&lt;li&gt;&lt;li&gt;Sophia's finalized user profile designs and style guide.&lt;/li&gt;\n&lt;li&gt;&lt;li&gt;Ethan's test case drafting for QA.&lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;h2&gt;Decisions Made&lt;/h2&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;li&gt;Sprint goal confirmed: User Authentication and User Profile Module.&lt;/li&gt;\n&lt;li&gt;&lt;li&gt;Timeline: Modules ready for QA by Wednesday.&lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;h2&gt;Action Items&lt;/h2&gt;&lt;/p&gt;\n\n&lt;p&gt;&lt;b&gt;Action Item:&lt;/b&gt; User Account Design Mockups (due next week)&lt;br /&gt;&lt;b&gt;Assigned Owner:&lt;/b&gt; Emily&lt;br /&gt;&lt;b&gt;Gift Suggestion:&lt;/b&gt; A fun desk plant&lt;br /&gt;&lt;i style=\"font-style: italic;\"&gt;\"Emily: Sure, I can do that.\"&lt;/i&gt;&lt;/p&gt;\n\n&lt;p&gt;&lt;b&gt;Action Item:&lt;/b&gt; Database Schema (due next week)&lt;br /&gt;&lt;b&gt;Assigned Owner:&lt;/b&gt; John&lt;br /&gt;&lt;b&gt;Gift Suggestion:&lt;/b&gt; A quirky notebook&lt;br /&gt;&lt;i style=\"font-style: italic;\"&gt;\"John: Yes, database schema by next week sounds good.\"&lt;/i&gt;&lt;/p&gt;\n\n&lt;br /&gt;\n\n&lt;p&gt;&lt;b&gt;Action Item:&lt;/b&gt; Finalize and share QA Test Cases.&lt;br /&gt;&lt;b&gt;Assigned Owner:&lt;/b&gt; Ethan&lt;br /&gt;&lt;b&gt;Gift Suggestion:&lt;/b&gt; Fun coffee mug&lt;br /&gt;&lt;i style=\"font-style: italic;\"&gt;\"Ethan: I've started drafting the test cases...\"&lt;/i&gt;&lt;/p&gt;\n\n&lt;br /&gt;\n\n&lt;p&gt;&lt;b&gt;Action Item:&lt;/b&gt; Schedule check-in meeting Wed.&lt;br /&gt;&lt;b&gt;Assigned Owner:&lt;/b&gt; Maria&lt;br /&gt;&lt;b&gt;Gift Suggestion:&lt;/b&gt; Planner or organizer&lt;br /&gt;&lt;i style=\"font-style: italic;\"&gt;\"Maria: Let's stay in close communication...\"&lt;/i&gt;&lt;/p&gt;\n\nDONT WRAP HTML IN \n\"\n```html\nand ```\n\"\nMeeting Transcript: "},{"type":"inputVariable","id":"Meeting_20Transcript"},{"type":"literal","text":" "}],"definitions":{"inputs":[{"id":"Meeting_20Transcript","text":"Meeting Transcript","type":"text","quickTestValue":"Meeting: Project \"Phoenix\" - Sprint Planning - Deep Dive Edition!\n\nAttendees:  Maria (Project Manager),  David (Lead Developer),  Sophia (UX Designer),  Ethan (QA Tester)\n\n[Extended Watercooler Conversation - Start - Get Ready for Details!]\n\nMaria:  Morning, team Phoenix!  Hope everyone had a fantastic weekend and is feeling energized for our sprint planning.  Let's kick things off with a little weekend recap – anyone do anything interesting? David, you’re up first!\n\nDavid:  Morning Maria, and team!  Interesting weekend?  Understatement!  So, remember I mentioned hiking last time? This weekend, I tackled the \"Devil's Tooth Trail\" – it’s a beast!  Seriously steep incline, rocky terrain, the whole nine yards.  Started Saturday morning, packed a ridiculous amount of water and protein bars.  The views from the summit were absolutely breathtaking – panoramic vista of the whole valley, you could see for miles.  Took some amazing photos, might even use one as my desktop background.  But… and here’s the kicker… about halfway down, I completely twisted my ankle.  OUCH!  Had to hobble the rest of the way, took me hours.  Ended up icing it all of Sunday, couldn’t walk properly until this morning.  So, beautiful hike, stunning views, epic fail on the descent.  Learned my lesson: hiking boots with better ankle support are now priority number one on my shopping list!  How about you, Sophia?  Less… physically traumatic, I hope?\n\nSophia:  (Laughs) Oh David, you’re a trooper!  Sounds intense!  My weekend was… decidedly less strenuous.  I had a glorious, artsy, indoor weekend.  You know I’ve been getting into Japanese woodblock printing lately?  Well, I found this amazing online workshop with a master printmaker from Kyoto!  It was a two-day intensive, all virtual.  Spent Saturday and Sunday completely immersed in carving cherry wood blocks, mixing traditional pigments, and learning the Ukiyo-e techniques.  It's SO meticulous, every line has to be perfect.  My hands are a little sore from carving, but I created two prints that I’m actually really proud of – one of Mount Fuji at sunset, and another of stylized koi fish.  Might frame them for my apartment.  Completely different world from UX design, so creatively fulfilling.  Totally recharged my batteries.  Ethan, did you conquer any digital worlds this weekend?\n\nEthan:  Sophia, woodblock printing sounds incredibly cool and…patient!  My weekend was pure digital mayhem, as predicted.  \"Galactic Empires Online: Voidbringer Expansion\" dropped Friday night.  And… let’s just say sleep was optional.  I joined a new guild – \"The Quantum Crusaders\" – they are hardcore.  We spent basically the entire weekend coordinating raids, strategizing fleet deployments, mining asteroids, and battling rival guilds for control of the Andromeda Galaxy (virtually, of course!).  Pulled two all-nighters, fueled by energy drinks and sheer willpower.  My apartment looks like a disaster zone of empty cans and snack wrappers, and I think my eyes are permanently square now, but… we conquered a whole new sector of space!  Top of the leaderboard, baby!  So, yeah, productive weekend in its own… unique way.  Maria, after all that adventure and digital domination, what did project management extraordinaire get up to?\n\nMaria:  (Chuckles)  Ethan, “digital mayhem” – I love it!  My weekend was… a bit more grounded in reality.  Remember I mentioned flatpack furniture last week?  Well, the saga continues.  This time, it was a bookshelf.  Seemed simple enough, right?  WRONG.  Instructions were cryptic hieroglyphics, Allen key stripped halfway through, and I’m pretty sure I installed one of the side panels upside down.  Spent hours wrestling with particleboard and tiny screws.  At one point, I considered just setting the whole thing on fire and ordering pre-assembled furniture online.  But… stubbornness prevailed.  After much cursing, sweat, and a near-existential crisis involving cam locks, I actually… assembled it!  It’s standing upright, miraculously.  A little wobbly, maybe, and slightly… asymmetrical, but it’s a bookshelf!  So, weekend achievement unlocked:  Barely Functional Bookshelf Construction.  Seriously considering hiring a professional furniture assembler for anything else that comes in a flatpack box in the future.  Okay team, enough about our weekends of hiking mishaps, artistic endeavors, digital conquests, and furniture failures!  Let’s actually get to the *real* project – Project \"Phoenix\" Sprint Planning.\n\n[Extended Watercooler Conversation - End / Sprint Planning - Start - Back to Business!]\n\nMaria:  Right, so, for Project \"Phoenix,\" our sprint goal for this week remains focused on completing the user authentication module and finalizing the user profile setup.  David, given your… eventful hiking trip, are you still on track with the authentication module development update?  Need any… ankle-related accommodations? (winks)\n\nDavid:  (Chuckles) Ankle is… mostly functional for coding purposes, Maria.  Yes, authentication module is still progressing.  Error handling and security checks are underway.  Unit tests are next on the list.  Still aiming for QA readiness by Wednesday, even with the slightly hobbled developer.\n\nSophia:  Excellent!  UX side is ready to support.  User profile designs and the style guide are finalized and polished.  I can share the style guide document with the development team first thing this morning to ensure everyone is aligned on the visual aspects.\n\nEthan:  QA is gearing up as well. Test cases for user authentication and profile setup are nearing completion.  We’ll be ready to hit the ground running with testing as soon as David and Sophia give us the green light.  Will prioritize security and those pesky edge cases, as always.\n\nMaria:  Fantastic. Decisions: Sprint goal remains User Authentication and User Profile Module completion. Target QA readiness: Wednesday.\n\nAction Items:\n1. David: Finish error handling, security checks, and comprehensive unit tests for the Authentication Module. (Due: Wednesday)\n2. Sophia: Distribute the finalized User Profile Design Style Guide document to David and the development team. (Due: Today - Immediately after this meeting)\n3. Ethan: Complete, finalize, and share the detailed QA Test Cases document for User Authentication and User Profile Modules with the team. (Due: Tuesday Morning)\n4. Maria: Schedule a brief daily stand-up meeting for the rest of the week (starting tomorrow) to monitor sprint progress, identify and resolve any roadblocks promptly. (Due: Today - Calendar invites to be sent out by end of day)\n\nMaria:  Outstanding.  This sprint plan is solid.  Remember, communication is key.  Keep those progress updates coming in the project channel.  Let’s collaborate effectively, support each other, and make this sprint another success for Project Phoenix!  Any final thoughts or questions before we adjourn?\n\nDavid:  Just need copious amounts of coffee and maybe a better chair for my ankle.  But code-wise, we’re good.\n\nSophia:  Looking forward to seeing the authentication and profile modules come to life!\n\nEthan:  Bring on the bugs!  QA team is ready to squash them all!\n\nMaria:  (Smiling)  That’s the spirit!  Alright team, meeting adjourned.  Go forth and conquer this sprint!\n\nMeeting Adjourned."}],"data":[],"output":{"formats":["text"]}},"modelParameters":{"modelType":"gpt-35-turbo","gptParameters":{"temperature":0}},"settings":{"recordRetrievalLimit":30,"shouldPreserveRecordLinks":null}}</msdyn_customconfiguration>
+          <msdyn_majoriterationnumber>7</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_name>28b9cd69-c761-4e88-a744-9a2830ba0e22_2025-03-01T06:36:36.116Z</msdyn_name>
+          <msdyn_modelrundataspecification>H4sIAAAAAAAACpWQuwrCQBBFf0Wm3kJFLNL5BAsVkmAro5nEgbi77E7AIPl3ExNRjI31PffM4w6RpfPauCvKgZxnoyEYKdhoW0hojKy0sJQQ3GHJ3uZY7vBKEAAomIk4PhVCvom3RMI6O46HsUPtz46t9GsdNfhgFOyt1HMxhyDF3JOCuLQNHNV+nUGlAJOEW2ZhtNDth3nWQz7F4oq3d46eppOXvar9+0L+vff3FnE7uHdAypr9JST0zYO/W+tnOujiXr1e8QGY3ICVqAEAAA==</msdyn_modelrundataspecification>
+          <msdyn_type>190690001</msdyn_type>
+          <msdyn_aimodelid>{28b9cd69-c761-4e88-a744-9a2830ba0e22}</msdyn_aimodelid>
+          <msdyn_trainedmodelaiconfigurationpareid>{381157ab-3cf6-ef11-be1f-000d3a5ba3af}</msdyn_trainedmodelaiconfigurationpareid>
+          <statecode>2</statecode>
+          <statuscode>7</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{381157ab-3cf6-ef11-be1f-000d3a5ba3af}</msdyn_aiconfigurationid>
+          <msdyn_databinding>{"schemaVersion":2}</msdyn_databinding>
+          <msdyn_majoriterationnumber>1</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_modeldata>cc574070-98f6-48fd-8c11-e05be8a1c6f2</msdyn_modeldata>
+          <msdyn_name>28b9cd69-c761-4e88-a744-9a2830ba0e22_2025-03-01T01:29:50.744Z</msdyn_name>
+          <msdyn_modelrundataspecification>
+        {
+          "schemaVersion": 2,
+          "input": {},
+          "output": {}
+        }
+      </msdyn_modelrundataspecification>
+          <msdyn_type>190690000</msdyn_type>
+          <msdyn_aimodelid>{28b9cd69-c761-4e88-a744-9a2830ba0e22}</msdyn_aimodelid>
+          <statecode>2</statecode>
+          <statuscode>6</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+      </AIConfigurations>
+    </AIModel>
+  </AIModels>
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="cr97b_sharedapprovals_ea98c">
+      <connectionreferencedisplayname>Approvals MeetingMinutesGiftGeneratorHack-ea98c</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_approvals</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="cr97b_sharedcommondataserviceforapps_5766f">
+      <connectionreferencedisplayname>Microsoft Dataverse MeetingMinutesGiftGeneratorHack-5766f</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="cr97b_sharedoffice365_9ed09">
+      <connectionreferencedisplayname>Office 365 Outlook MeetingMinutesGiftGeneratorHack-9ed09</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>
